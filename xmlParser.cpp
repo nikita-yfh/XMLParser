@@ -540,7 +540,7 @@ XMLCHAR xmltoc(XMLCSTR t,const XMLCHAR v) {
 
 // Since each application has its own way to report and deal with errors, you should modify & rewrite
 // the following "openFileHelper" function to get an "error reporting mechanism" tailored to your needs.
-XMLNode XMLNode::openFileHelper(XMLCSTR filename, XMLCSTR tag) {
+XMLNode XMLNode::openFileHelper(XMLCSTR filename, XMLCSTR tag, XMLError *error, XMLSTR *error_str) {
 	// guess the value of the global parameter "characterEncoding"
 	// (the guess is based on the first 200 bytes of the file).
 	FILE *f=xfopen(filename,_CXML("rb"));
@@ -578,12 +578,14 @@ XMLNode XMLNode::openFileHelper(XMLCSTR filename, XMLCSTR tag) {
 				  ,filename,XMLNode::getError(pResults.error),pResults.nLine,pResults.nColumn,s1,s2,s3);
 
 		// display message
-#if defined(_XMLWINDOWS) && !defined(UNDER_CE) && !defined(_XMLPARSER_NO_MESSAGEBOX_)
-		MessageBoxA(NULL,message,"XML Parsing error",MB_OK|MB_ICONERROR|MB_TOPMOST);
+/*#if defined(_XMLWINDOWS) && !defined(UNDER_CE) && !defined(_XMLPARSER_NO_MESSAGEBOX_)
+		//MessageBoxA(NULL,message,"XML Parsing error",MB_OK|MB_ICONERROR|MB_TOPMOST);
 #else
-		printf("%s",message);
-#endif
-		exit(255);
+		//printf("%s",message);
+#endif*/
+        if(error!=0)*error=pResults.error;
+        if(error_str!=0)strcpy(*error_str,message);
+		//exit(255);
 	}
 	return xnode;
 }

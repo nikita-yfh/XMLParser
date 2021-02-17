@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1613485235 source:/home/nikita/c++/src/XML/xmlParser.cpp
+1613587568 source:/home/nikita/c++/src/XML/xmlParser.cpp
 	"xmlParser.h"
 	<Windows.h>
 	<memory.h>
@@ -11,7 +11,7 @@
 	<wctype.h>
 	<widec.h>
 
-1613485235 /home/nikita/c++/src/XML/xmlParser.h
+1613587994 /home/nikita/c++/src/XML/xmlParser.h
 	<stdlib.h>
 	<tchar.h>
 	<wchar.h>

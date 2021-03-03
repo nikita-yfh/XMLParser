@@ -655,15 +655,5 @@ private:
 	void alloc(int newsize);
 } XMLParserBase64Tool;
 /** @} */
-typedef struct{
-    std::string path;
-    XMLNode str;
-} XMLCache;
-typedef struct{
-    vector<XMLCache>cache;
-    template<typename T>
-    bool get(T &value);
-    bool get(std::string &str);
-} XMLReader;
 #undef XMLDLLENTRY
 
